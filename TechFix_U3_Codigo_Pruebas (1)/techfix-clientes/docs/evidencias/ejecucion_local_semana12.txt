@@ -1,0 +1,98 @@
+$ python src/manage.py check
+System check identified no issues (0 silenced).
+
+
+Código de salida: 0
+
+$ python src/manage.py makemigrations --check --dry-run
+No changes detected
+
+
+Código de salida: 0
+
+$ python src/manage.py test clientes.tests.test_clientes.PersistenciaClientesTest.test_cp_i01_persistir_y_recuperar_cliente --verbosity 2 --noinput
+Found 1 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: messages, staticfiles
+  Apply all migrations: auth, clientes, contenttypes, sessions
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0001_initial... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying clientes.0001_initial... OK
+  Applying sessions.0001_initial... OK
+System check identified no issues (0 silenced).
+
+Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+test_cp_i01_persistir_y_recuperar_cliente (clientes.tests.test_clientes.PersistenciaClientesTest.test_cp_i01_persistir_y_recuperar_cliente)
+CP-I01 crítico: servicio + DAO + ORM + base real de pruebas. ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.041s
+
+OK
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+
+Código de salida: 0
+
+$ python src/manage.py test clientes --verbosity 2 --noinput
+Found 10 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: messages, staticfiles
+  Apply all migrations: auth, clientes, contenttypes, sessions
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0001_initial... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying clientes.0001_initial... OK
+  Applying sessions.0001_initial... OK
+System check identified no issues (0 silenced).
+
+Creating test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+test_flujo_http_autorizado (clientes.tests.test_clientes.SeguridadHTTPTest.test_flujo_http_autorizado) ... ok
+test_post_sin_permiso_no_modifica (clientes.tests.test_clientes.SeguridadHTTPTest.test_post_sin_permiso_no_modifica) ... ok
+test_cp_i01_persistir_y_recuperar_cliente (clientes.tests.test_clientes.PersistenciaClientesTest.test_cp_i01_persistir_y_recuperar_cliente)
+CP-I01 crítico: servicio + DAO + ORM + base real de pruebas. ... ok
+test_cp_i02_duplicado (clientes.tests.test_clientes.PersistenciaClientesTest.test_cp_i02_duplicado) ... ok
+test_cp_i03_actualizacion_autorizada (clientes.tests.test_clientes.PersistenciaClientesTest.test_cp_i03_actualizacion_autorizada) ... ok
+test_cp_u01_identificacion_vacia (clientes.tests.test_clientes.ValidacionesTest.test_cp_u01_identificacion_vacia) ... ok
+test_cp_u02_nombres_vacios (clientes.tests.test_clientes.ValidacionesTest.test_cp_u02_nombres_vacios) ... ok
+test_cp_u03_correo_invalido (clientes.tests.test_clientes.ValidacionesTest.test_cp_u03_correo_invalido) ... ok
+test_cp_u04_normalizacion (clientes.tests.test_clientes.ValidacionesTest.test_cp_u04_normalizacion) ... ok
+test_cp_u05_permiso_denegado (clientes.tests.test_clientes.ValidacionesTest.test_cp_u05_permiso_denegado) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.083s
+
+OK
+Destroying test database for alias 'default' ('file:memorydb_default?mode=memory&cache=shared')...
+
+Código de salida: 0
