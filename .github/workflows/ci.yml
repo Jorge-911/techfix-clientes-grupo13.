@@ -1,0 +1,40 @@
+name: CI TechFix - pruebas de clientes
+
+on:
+  push:
+    branches: [main, feature/ci-clientes]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  APP_DIR: TechFix_U3_Codigo_Pruebas (1)/techfix-clientes
+
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Obtener código
+        uses: actions/checkout@v4
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependencias
+        run: python -m pip install -r "$APP_DIR/requirements.txt"
+
+      - name: Revisar configuración y migraciones
+        run: |
+          python "$APP_DIR/src/manage.py" check
+          python "$APP_DIR/src/manage.py" makemigrations --check --dry-run
+
+      - name: CP-I01 - persistir y recuperar cliente
+        run: python "$APP_DIR/src/manage.py" test clientes.tests.test_clientes.PersistenciaClientesTest.test_cp_i01_persistir_y_recuperar_cliente --verbosity 2 --noinput
+
+      - name: Ejecutar suite automatizada
+        run: python "$APP_DIR/src/manage.py" test clientes --verbosity 2 --noinput
